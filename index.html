@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Portafolio</title>
+  <link rel="stylesheet" href="output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Fondo partículas */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* queda detrás del contenido */
+      background-color: #0f172a; /* un fondo base oscuro */
+    }
+
+    .menu-transition {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #ffffff;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Estilos para la animación de las tecnologías */
+    .tech-card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+
+     .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      border-radius: 50%;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(32, 25, 165, 0.25);
+      border-color: rgba(white);
+    }
+
+    .skill-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .skill-icon i {
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .skill-card h3 {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card p {
+      color: #d1d5db;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Efecto de borde luminoso en hover */
+    .skill-card:hover::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 18px;
+      z-index: -1;
+      animation: borderAnimation 2s linear infinite;
+    }
+
+    @keyframes borderAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .tech-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Retrasos escalonados para cada tarjeta */
+    .tech-card:nth-child(1) { transition-delay: 0.1s; }
+    .tech-card:nth-child(2) { transition-delay: 0.2s; }
+    .tech-card:nth-child(3) { transition-delay: 0.3s; }
+    .tech-card:nth-child(4) { transition-delay: 0.4s; }
+  </style>
+</head>
+<body class="bg-gray-900">
+  
+<!-- Partículas -->
+<div id="particles-js"></div>
+
+<!-- Header -->
+<header class="shadow-lg sticky top-0 z-50 bg-gray-900">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      
+      <!-- Logo y nombre -->
+      <div class="flex items-center space-x-2">
+        <div class="flex-shrink-0">
+          <img class="h-12 w-auto" src="/src/img/Logo.png" alt="">
+        </div>
+        <span class="text-white font-bold text-2xl hidden sm:block">Portafolio</span>
+      </div>
+
+      <!-- Menú Desktop -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Quien Soy</a>
+        <a href="#tecnologias" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Tecnologias</a>
+        <a href="#" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Proyectos</a>
+        <a href="#" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Contacto</a>
+      </div>
+
+      <!-- Botón Hamburguesa -->
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-white hover:bg-indigo-700 p-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-white">
+          <svg class="h-6 w-6 menu-open-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg class="h-6 w-6 menu-close-icon hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menú Mobile -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 pt-2 space-y-1 menu-transition absolute left-0 right-0 bg-indigo-800 shadow-lg">
+    <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Inicio</a>
+    <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Productos</a>
+    <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Características</a>
+    <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Precios</a>
+    <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Contacto</a>
+    <div class="pt-4 border-t border-indigo-700 space-y-2">
+      <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Iniciar sesión</a>
+      <a href="#" class="block text-indigo-700 font-medium text-lg bg-white px-3 py-2 rounded-md hover:bg-indigo-50 transition-colors text-center">Registrarse</a>
+    </div>
+  </div>
+</header>
+
+<!-- Contenido -->
+<main class="max-w-7xl mx-auto my-20 py-5 sm:px-6 lg:px-8 ">
+  <section class="text-center mb-12">
+    <h1 class="text-4xl font-extrabold text-white mb-4">Mi historia y habilidades</h1>
+    <p class="text-2xl my-20 text-gray-400 max-w-3xl mx-auto">
+      Mi nombre es Alejandro y soy un desarrollador de software egresado del Sena.
+      Estoy en el proceso de volverme un desarrollador Full Stack 
+    </p>
+  </section>
+  
+  
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="skill-card ">
+      <div class="skill-icon">
+        <i class="fas fa-comments"></i>
+      </div>
+      <h3>Comunicación</h3>
+      <p>Soy una persona muy comunicativa, ya que es lo mejor a la hora de hacer un gran desarrollo</p>
+    </div>
+    
+    <div class="skill-card">
+      <div class="skill-icon">
+        <i class="fas fa-dumbbell"></i>
+      </div>
+      <h3>Esfuerzo</h3>
+      <p>Soy una persona que se adapta a todo tipo de cambio y se esfuerza por saber cada día más</p>
+    </div>
+    
+    <div class="skill-card">
+      <div class="skill-icon">
+        <i class="fas fa-search"></i>
+      </div>
+      <h3>Curiosidad</h3>
+      <p>Soy una persona a la que le gusta mucho indagar acerca de nuevos temas y tecnologías.</p>
+    </div>
+  </section>
+
+
+  <section id="tecnologias" class="max-w-7xl mx-auto my-3 py-10 px-6 ">
+  <h2 class="text-4xl font-extrabold text-white text-center mb-12 ">Tecnologías que manejo</h2>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <!-- Tarjeta tecnología -->
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <i class="fab fa-html5 text-orange-500 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">HTML5</h3>
+    </div>
+
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <i class="fab fa-css3-alt text-blue-500 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">CSS3</h3>
+    </div>
+
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <i class="fab fa-js-square text-yellow-400 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">JavaScript</h3>
+    </div>
+
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <i class="fab fa-node text-green-800 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">Node js</h3>
+    </div>
+
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <img src="src/img/logo_tailwind.svg" alt="Tailwind CSS" class="w-16 h-16 mx-auto mb-4">
+      <h3 class="text-xl font-semibold text-white">TailwindCSS</h3>
+    </div>
+
+    <!-- SQL genérico -->
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <i class="fas fa-database text-yellow-400 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">SQL</h3>
+    </div>
+
+    <!-- MySQL -->
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <i class="fas fa-database text-blue-400 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">MySQL</h3>
+    </div>
+
+    <!-- PostgreSQL -->
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <i class="fas fa-database text-indigo-400 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">PostgreSQL</h3>
+    </div>
+
+  </div>
+</section>
+
+
+
+</main>
+
+<!-- Scripts -->
+<script src="js/index.js"></script>
+
+<!-- Librerías locales -->
+<script src="js/app.js"></script>
+<script src="js/lib/stats.js"></script>
+<script src="js/particles.min.js"></script>
+
+<!-- Inicialización partículas -->
+<script>
+  particlesJS("particles-js", {
+    "particles": {
+      "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+      "color": { "value": "#ffffff" },
+      "shape": { "type": "circle" },
+      "opacity": { "value": 0.5 },
+      "size": { "value": 3 },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": { "enable": true, "speed": 3 }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": { "onhover": { "enable": true, "mode": "repulse" } }
+    },
+    "retina_detect": true
+  });
+</script>
+
+</body>
+</html>
