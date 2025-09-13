@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Portafolio</title>
-  <link rel="stylesheet" href="output.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="output.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     
@@ -20,8 +20,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1; /* queda detrás del contenido */
-      background-color: #0f172a; /* un fondo base oscuro */
+      z-index: -1;
+      background-color: #0f172a;
     }
 
     .menu-transition {
@@ -58,8 +58,19 @@
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
+    .skill-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
 
-     .skill-card::before {
+    .skill-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -73,7 +84,7 @@
     .skill-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 40px rgba(32, 25, 165, 0.25);
-      border-color: rgba(white);
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
     .skill-icon {
@@ -83,7 +94,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
+      margin: 0 auto 1.5rem;
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
     }
 
@@ -105,31 +116,6 @@
       line-height: 1.6;
     }
 
-    /* Efecto de borde luminoso en hover */
-    .skill-card:hover::after {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      border-radius: 18px;
-      z-index: -1;
-      animation: borderAnimation 2s linear infinite;
-    }
-
-    @keyframes borderAnimation {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
     .tech-card.visible {
       opacity: 1;
       transform: translateY(0);
@@ -140,6 +126,15 @@
     .tech-card:nth-child(2) { transition-delay: 0.2s; }
     .tech-card:nth-child(3) { transition-delay: 0.3s; }
     .tech-card:nth-child(4) { transition-delay: 0.4s; }
+    .tech-card:nth-child(5) { transition-delay: 0.5s; }
+    .tech-card:nth-child(6) { transition-delay: 0.6s; }
+    .tech-card:nth-child(7) { transition-delay: 0.7s; }
+    .tech-card:nth-child(8) { transition-delay: 0.8s; }
+    .tech-card:nth-child(9) { transition-delay: 0.9s; }
+
+
+
+    
   </style>
 </head>
 <body class="bg-gray-900">
@@ -155,7 +150,7 @@
       <!-- Logo y nombre -->
       <div class="flex items-center space-x-2">
         <div class="flex-shrink-0">
-          <img class="h-12 w-auto" src="/src/img/Logo.png" alt="">
+          <img class="h-12 w-auto" src="src/img/Logo.png" alt="Logo">
         </div>
         <span class="text-white font-bold text-2xl hidden sm:block">Portafolio</span>
       </div>
@@ -164,8 +159,8 @@
       <div class="hidden md:flex space-x-8">
         <a href="#" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Quien Soy</a>
         <a href="#tecnologias" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Tecnologias</a>
-        <a href="#" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Proyectos</a>
-        <a href="#" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Contacto</a>
+        <a href="#proyectos" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Proyectos</a>
+        <a href="#contacto" class="nav-link text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Contacto</a>
       </div>
 
       <!-- Botón Hamburguesa -->
@@ -185,14 +180,9 @@
   <!-- Menú Mobile -->
   <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 pt-2 space-y-1 menu-transition absolute left-0 right-0 bg-indigo-800 shadow-lg">
     <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Inicio</a>
-    <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Productos</a>
-    <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Características</a>
-    <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Precios</a>
-    <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Contacto</a>
-    <div class="pt-4 border-t border-indigo-700 space-y-2">
-      <a href="#" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Iniciar sesión</a>
-      <a href="#" class="block text-indigo-700 font-medium text-lg bg-white px-3 py-2 rounded-md hover:bg-indigo-50 transition-colors text-center">Registrarse</a>
-    </div>
+    <a href="#tecnologias" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Tecnologías</a>
+    <a href="#proyectos" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Proyectos</a>
+    <a href="#contacto" class="block text-white font-medium text-lg px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">Contacto</a>
   </div>
 </header>
 
@@ -208,8 +198,8 @@
   
   
   <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div class="skill-card ">
-      <div class="skill-icon">
+    <div class="skill-card">
+      <div class="skill-icon bg-indigo-600">
         <i class="fas fa-comments"></i>
       </div>
       <h3>Comunicación</h3>
@@ -217,7 +207,7 @@
     </div>
     
     <div class="skill-card">
-      <div class="skill-icon">
+      <div class="skill-icon bg-purple-600">
         <i class="fas fa-dumbbell"></i>
       </div>
       <h3>Esfuerzo</h3>
@@ -225,7 +215,7 @@
     </div>
     
     <div class="skill-card">
-      <div class="skill-icon">
+      <div class="skill-icon bg-pink-600">
         <i class="fas fa-search"></i>
       </div>
       <h3>Curiosidad</h3>
@@ -235,51 +225,65 @@
 
 
   <section id="tecnologias" class="max-w-7xl mx-auto my-3 py-10 px-6 ">
-  <h2 class="text-4xl font-extrabold text-white text-center mb-12 ">Tecnologías que manejo</h2>
+  <h2 class="text-4xl font-extrabold text-white text-center mb-12">Tecnologías que manejo</h2>
 
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-    <!-- Tarjeta tecnología -->
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
+    <!-- HTML5 -->
     <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
       <i class="fab fa-html5 text-orange-500 text-6xl mb-4"></i>
       <h3 class="text-xl font-semibold text-white">HTML5</h3>
     </div>
 
+    <!-- CSS3 -->
     <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
       <i class="fab fa-css3-alt text-blue-500 text-6xl mb-4"></i>
       <h3 class="text-xl font-semibold text-white">CSS3</h3>
     </div>
 
+    <!-- JavaScript -->
     <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
       <i class="fab fa-js-square text-yellow-400 text-6xl mb-4"></i>
       <h3 class="text-xl font-semibold text-white">JavaScript</h3>
     </div>
 
+    <!-- Node.js -->
     <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
-      <i class="fab fa-node text-green-800 text-6xl mb-4"></i>
-      <h3 class="text-xl font-semibold text-white">Node js</h3>
+      <i class="fab fa-node-js text-green-600 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">Node.js</h3>
     </div>
 
+    <!-- TailwindCSS -->
     <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
-      <img src="src/img/logo_tailwind.svg" alt="Tailwind CSS" class="w-16 h-16 mx-auto mb-4">
+      <div class="flex justify-center items-center h-16 mb-4">
+        <img class="h-12 w-20" src="src/img/logo_tailwind.svg" alt="Tailwind CSS Logo">
+      </div>
       <h3 class="text-xl font-semibold text-white">TailwindCSS</h3>
     </div>
 
-    <!-- SQL genérico -->
+    <!-- Git -->
     <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
-      <i class="fas fa-database text-yellow-400 text-6xl mb-4"></i>
-      <h3 class="text-xl font-semibold text-white">SQL</h3>
+      <i class="fab fa-git-alt text-orange-600 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">Git</h3>
+    </div>
+
+    <!-- GitHub -->
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <i class="fab fa-github text-gray-100 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-white">GitHub</h3>
+    </div>
+
+    <!-- Python -->
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
+      <div class="flex justify-center items-center h-16 mb-4">
+        <img class="h-12 w-20" src="src/img/python_logo.svg" alt="Python Logo">
+      </div>
+      <h3 class="text-xl font-semibold text-white">Python</h3>
     </div>
 
     <!-- MySQL -->
     <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
-      <i class="fas fa-database text-blue-400 text-6xl mb-4"></i>
+      <i class="fas fa-database text-blue-500 text-6xl mb-4"></i>
       <h3 class="text-xl font-semibold text-white">MySQL</h3>
-    </div>
-
-    <!-- PostgreSQL -->
-    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-110 hover:bg-white/20">
-      <i class="fas fa-database text-indigo-400 text-6xl mb-4"></i>
-      <h3 class="text-xl font-semibold text-white">PostgreSQL</h3>
     </div>
 
   </div>
@@ -287,15 +291,115 @@
 
 
 
-</main>
+<section class="mt-15 tech-card" id="proyectos">
+  <h2 class="text-4xl font-extrabold text-white text-center">Mis proyectos</h2>
+
+
+  <div id="container-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 m-10 text-center ">
+
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-105">
+      <div class="h-40 bg-indigo-600 rounded-lg flex items-center justify-center mb-4">
+        <i class="fas fa-project-diagram text-white text-5xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-white mb-2">Proyecto 1</h3>
+      <p class="text-gray-300 mb-4">Descripción breve del proyecto y tecnologías utilizadas.</p>
+      <a href="#" class="text-indigo-400 hover:text-indigo-300 font-medium">Ver detalles</a>
+    </div>
+
+
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-105">
+      <div class="h-40 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+        <i class="fas fa-laptop-code text-white text-5xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-white mb-2">Proyecto 2</h3>
+      <p class="text-gray-300 mb-4">Descripción breve del proyecto y tecnologías utilizadas.</p>
+      <a href="#" class="text-indigo-400 hover:text-indigo-300 font-medium">Ver detalles</a>
+    </div>
+
+
+    <div class="tech-card bg-white/10 p-6 rounded-2xl shadow-lg transform transition duration-500 hover:scale-105">
+      <div class="h-40 bg-pink-600 rounded-lg flex items-center justify-center mb-4">
+        <i class="fas fa-mobile-alt text-white text-5xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-white mb-2">Proyecto 3</h3>
+      <p class="text-gray-300 mb-4">Descripción breve del proyecto y tecnologías utilizadas.</p>
+      <a href="#" class="text-indigo-400 hover:text-indigo-300 font-medium">Ver detalles</a>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Contacto con Tailwind CSS -->
+<section id="contacto" class="mt-20 max-w-4xl mx-auto px-4">
+  <h2 class="text-4xl font-extrabold text-white text-center mb-2">Contacto</h2>
+  <p class="text-gray-400 text-center mb-10">¿Interesado en trabajar conmigo? Envíame un mensaje</p>
+
+  <div class="bg-white bg-opacity-5 backdrop-blur-md border border-white border-opacity-10 rounded-2xl p-8">
+    <!-- FORMULARIO DE CONTACTO -->
+    <form id="contactForm" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="name" class="block text-gray-300 mb-2 font-medium">Nombre completo</label>
+          <input type="text" id="name" name="name" class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" placeholder="Tu nombre" required>
+        </div>
+        <div>
+          <label for="email" class="block text-gray-300 mb-2 font-medium">Correo electrónico</label>
+          <input type="email" id="email" name="email" class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" placeholder="tu@email.com" required>
+        </div>
+      </div>
+      
+      <div>
+        <label for="message" class="block text-gray-300 mb-2 font-medium">Mensaje</label>
+        <textarea id="message" name="message" rows="5" class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" placeholder="Escribe tu mensaje aquí..." required></textarea>
+      </div>
+      
+      <div class="text-center pt-4">
+        <button type="submit" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-8 rounded-lg hover:from-indigo-700 hover:to-purple-700 transform hover:-translate-y-1 transition duration-300 shadow-lg hover:shadow-xl">
+          Enviar mensaje
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script> 
+import nodemailer from "nodemailer";
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Método no permitido" });
+  }
+
+  const { name, email, message } = req.body;
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,  // variable de entorno en Vercel
+        pass: process.env.EMAIL_PASS,  // contraseña de aplicación
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"Portafolio Contacto" <${email}>`,
+      to: process.env.EMAIL_USER, // el correo donde recibes
+      subject: "Nuevo mensaje desde tu portafolio",
+      text: `De: ${name} (${email})\n\n${message}`,
+      html: `<p><b>Nombre:</b> ${name}</p>
+             <p><b>Email:</b> ${email}</p>
+             <p><b>Mensaje:</b> ${message}</p>`,
+    });
+
+    res.status(200).json({ message: "Mensaje enviado con éxito ✅" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al enviar el mensaje ❌" });
+  }
+}
+</script>
 
 <!-- Scripts -->
-<script src="js/index.js"></script>
-
-<!-- Librerías locales -->
-<script src="js/app.js"></script>
-<script src="js/lib/stats.js"></script>
-<script src="js/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <!-- Inicialización partículas -->
 <script>
@@ -321,7 +425,9 @@
     },
     "retina_detect": true
   });
+
 </script>
+<script src="/js/index.js"></script>
 
 </body>
 </html>
